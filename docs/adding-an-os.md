@@ -57,6 +57,8 @@ Differences from a direct PROM boot:
   style arguments.
 - The descriptor for your own image is type 3 (free) where a direct boot
   shows type 5. Reserve your image range yourself.
+- The `argv` strings and the `argv` array are inside indyboot's range,
+  `0x89C00000..0x89D32000`. Copy them before you reuse that memory.
 
 Check the image without indyboot first:
 
