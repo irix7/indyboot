@@ -1,0 +1,10 @@
+[package]
+name = "indyboot-core"
+description = "Manifest, URL, HTTP and ECOFF parsing for indyboot; no_std and host-testable"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+heapless = { version = "0.8", default-features = false }
+sha2 = { version = "0.10", default-features = false }

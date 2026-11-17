@@ -1,0 +1,28 @@
+[package]
+name = "indyboot"
+description = "Network bootloader for the SGI Indy, loaded by the ARCS PROM"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "indyboot"
+path = "src/main.rs"
+test = false
+bench = false
+
+[dependencies]
+indyboot-core = { path = "../core" }
+heapless = { version = "0.8", default-features = false }
+# Seeq 80C03 and HPC3 Ethernet driver from IRIX 7, proven on a real Indy.
+irix7-seeq = { git = "https://github.com/irix7/os", rev = "1b3ee1d" }
+smoltcp = { version = "0.13", default-features = false, features = [
+    "medium-ethernet",
+    "proto-ipv4",
+    "proto-ipv6",
+    "proto-dhcpv4",
+    "proto-dns",
+    "socket-dhcpv4",
+    "socket-dns",
+    "socket-tcp",
+] }

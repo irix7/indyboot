@@ -1,0 +1,6 @@
+[package]
+name = "mkecoff"
+description = "Convert the indyboot ELF to the ECOFF file the Indy PROM loads"
+version.workspace = true
+edition.workspace = true
+license.workspace = true

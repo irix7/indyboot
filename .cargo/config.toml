@@ -1,0 +1,5 @@
+[target.mips2-sgi-arcs-o32]
+rustflags = ["-C", "link-arg=-Tloader/link.ld"]
+
+[unstable]
+json-target-spec = true

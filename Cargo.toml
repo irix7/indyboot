@@ -1,0 +1,18 @@
+[workspace]
+resolver = "2"
+members = ["core", "loader", "tools/mkecoff"]
+default-members = ["core", "tools/mkecoff"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
+codegen-units = 1
+lto = true
+
+[profile.dev]
+panic = "abort"

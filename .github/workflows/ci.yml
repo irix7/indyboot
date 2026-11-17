@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # rustup installs the toolchain and components named in rust-toolchain.toml.
+      - run: rustup show
+      - run: cargo fmt --all --check
+      - run: cargo clippy -p indyboot-core -p mkecoff --all-targets -- -D warnings
+      - run: cargo test
+      - run: ./build.sh
+      - uses: actions/upload-artifact@v7
+        with:
+          name: indyboot
+          path: build/indyboot
