@@ -25,7 +25,7 @@ Manifest http://10.1.1.3/boot.cfg
   r  reload the list    i  network and memory    q  return to the PROM
 Boot which? 2
 Loading Redox OS
-  http://10.1.1.3/redox/redox
+  http://10.1.1.3/os/redox/redox
   ..........................................
   5517520 bytes, SHA-256 verified, loaded at 0x88040000..0x88583000, entry 0x88040000
 ```
@@ -90,11 +90,11 @@ The manifest is a text file of at most 8192 bytes.
 ```text
 timeout = 10
 default = irix7
-include = redox/indyboot.cfg
+include = os/redox/indyboot.cfg
 
 [irix7]
 title  = IRIX 7
-image  = irix7/irix7
+image  = os/irix7/irix7
 sha256 = 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
 size   = 1598392
 args   = console=d
@@ -138,7 +138,7 @@ The lab's BOOTP and TFTP server is `10.1.1.3` and serves
 | --- | --- |
 | `indyboot` | `build/indyboot`, fetched by the PROM over TFTP |
 | `boot.cfg` | `manifest/boot.cfg` |
-| `NAME/indyboot.cfg`, `NAME/IMAGE` | One directory per operating system, written by that project |
+| `os/NAME/indyboot.cfg`, `os/NAME/IMAGE` | One directory per operating system, written by that project |
 
 ## Test
 

@@ -80,15 +80,16 @@ tell an image problem from a bootloader problem.
 ## 2. Publish the image and a fragment
 
 Put the image and a file named `indyboot.cfg` in one directory on an HTTP
-server. On the lab server that directory is `/var/lib/sgi-netboot/NAME/`,
-served as `http://10.1.1.3/NAME/`.
+server. On the lab server that directory is `/var/lib/sgi-netboot/os/NAME/`,
+served as `http://10.1.1.3/os/NAME/`. The `os/` level keeps it apart from the
+file `NAME` that the PROM boots directly.
 
 `tools/indyboot-entry.sh` writes the fragment:
 
 ```sh
 tools/indyboot-entry.sh redox "Redox OS" build/indy/redox > indyboot.cfg
-install -D -m 0644 build/indy/redox /var/lib/sgi-netboot/redox/redox
-install -D -m 0644 indyboot.cfg /var/lib/sgi-netboot/redox/indyboot.cfg
+install -D -m 0644 build/indy/redox /var/lib/sgi-netboot/os/redox/redox
+install -D -m 0644 indyboot.cfg /var/lib/sgi-netboot/os/redox/indyboot.cfg
 ```
 
 ```text
@@ -124,7 +125,7 @@ Open a pull request against `manifest/boot.cfg` in
 [irix7/indyboot](https://github.com/irix7/indyboot) that adds:
 
 ```text
-include = NAME/indyboot.cfg
+include = os/NAME/indyboot.cfg
 ```
 
 `irix7`, `redox` and `haiku` are already listed. A fragment that is missing
@@ -134,5 +135,5 @@ later.
 To try a fragment before it is listed, boot with it as the manifest:
 
 ```text
->> boot -f bootp()indyboot url=http://10.1.1.3/NAME/indyboot.cfg
+>> boot -f bootp()indyboot url=http://10.1.1.3/os/NAME/indyboot.cfg
 ```
